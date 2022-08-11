@@ -13,7 +13,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+//import static org.hamcrest.MatcherAssert.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @TestPropertySource(locations = "classpath:/application.properties")
@@ -49,8 +50,8 @@ public class PostsRepositoryTest {
 
         //then
         Posts posts = postsList.get(0);
-        assertThat(posts.getTitle(),is(equalTo(title)));
-        assertThat(posts.getContent(),is(equalTo(content)));
+        assertThat(posts.getTitle()).isEqualTo(title);
+        assertThat(posts.getContent()).isEqualTo(content);
     }
 
     @Test
@@ -68,10 +69,10 @@ public class PostsRepositoryTest {
         //then
         Posts posts = postsList.get(0);
 
-        System.out.println(">>>>>>>>>crateData="+posts.getCreatedDate()+", modifiedDate="+posts.getModifiedDate());
-
-        assertThat(posts.getCreatedDate().isAfter(now),is(true));
-        assertThat(posts.getModifiedDate().isAfter(now),is(true));
+        //System.out.println(">>>>>>>>>crateData="+posts.getCreatedDate()+", modifiedDate="+posts.getModifiedDate());
+        // 여기가 안됨.
+        assertThat(posts.getCreatedDate()).isAfter(now);
+        assertThat(posts.getModifiedDate()).isAfter(now);
 
 
     }
